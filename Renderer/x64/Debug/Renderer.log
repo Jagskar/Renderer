@@ -1,4 +1,4 @@
-﻿  Display.cpp
-  main.cpp
-  Generating Code...
+﻿  main.cpp
+C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\Renderer\main.cpp(120,77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\Renderer\main.cpp(120,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Renderer.vcxproj -> C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\x64\Debug\Renderer.exe
