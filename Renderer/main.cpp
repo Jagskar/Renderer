@@ -20,6 +20,8 @@ vec3_t cube_rotation = { 0, 0, 0 };
 const float fov_factor_orthographic = 128;
 const float fov_factor_perspective = 640;
 
+int previous_frame_time = 0;
+
 void setup()
 {
 	// Allocate memory to colour_buffer: size = size of a uint32_t object x window_width x window_height (number of pixels on the screen)
@@ -88,12 +90,20 @@ vec2_t perspective_project(vec3_t point)
 
 void update()
 {
+	// Calculate how much longer we need to wait to reach target time for each frame
+	int time_to_wait = FRAME_TARGET_TIME - (SDL_GetTicks() - previous_frame_time);
+
+	// If there is still time to wait and that time is less than the target time for each frame:
+		// Lock execution until target time for each frame has been reached
+	if (time_to_wait > 0 && time_to_wait < FRAME_TARGET_TIME)
+		SDL_Delay(time_to_wait);
+
 	// Rotate about the x axis by 0.01 each frame
-	cube_rotation.x += 0.01;
+	cube_rotation.x += 0.001;
 	// Rotate about the y axis by 0.01 each frame
-	cube_rotation.y += 0.01;
+	cube_rotation.y += 0.001;
 	// Rotate about the z axis by 0.01 each frame
-	cube_rotation.z += 0.01;
+	cube_rotation.z += 0.001;
 
 	for (int i = 0; i < n_points; i++)
 	{
