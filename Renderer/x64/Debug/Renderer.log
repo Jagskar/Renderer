@@ -1,4 +1,7 @@
 ﻿  main.cpp
-C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\Renderer\main.cpp(120,77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\Renderer\main.cpp(120,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\Renderer\main.cpp(102,26): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\Renderer\main.cpp(104,26): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\Renderer\main.cpp(106,26): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\Renderer\main.cpp(143,77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\Renderer\main.cpp(143,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Renderer.vcxproj -> C:\Users\Jagde\OneDrive\Desktop\GameDev\Pikuma\3D Graphics Programming from Scratch\Renderer\x64\Debug\Renderer.exe

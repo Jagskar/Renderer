@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />

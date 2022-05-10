@@ -6,6 +6,10 @@
 #include <stdbool.h>
 #include <SDL.h>
 
+#define FPS 30
+// Number of milliseconds in each frame = number of milliseconds in a second / number of frames per second
+#define FRAME_TARGET_TIME (1000/FPS)
+
 extern SDL_Window* window;
 extern SDL_Renderer* renderer;
 extern uint32_t* colour_buffer;
