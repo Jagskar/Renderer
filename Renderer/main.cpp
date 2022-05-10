@@ -11,9 +11,11 @@ uint32_t grid_colour = 0xFFBD357A;
 
 // Number of points in cube 9 x 9 x 9
 const int n_points = 9 * 9 * 9;
-vect3_t cube_points[n_points];
-vect2_t projected_points[n_points];
-vect3_t camera_position = { 0, 0, -5 };
+vec3_t cube_points[n_points];
+vec2_t projected_points[n_points];
+vec3_t camera_position = { 0, 0, -5 };
+// Angle rotation about the x, y and z axes
+vec3_t cube_rotation = { 0, 0, 0 };
 
 const float fov_factor_orthographic = 128;
 const float fov_factor_perspective = 640;
@@ -37,7 +39,7 @@ void setup()
 		for (float y = -1; y <= 1; y += 0.25)
 			for (float z = -1; z <= 1; z += 0.25)
 			{
-				vect3_t new_point = { x, y, z };
+				vec3_t new_point = { x, y, z };
 				cube_points[point_count] = new_point;
 				point_count++;
 			}
@@ -63,9 +65,9 @@ void process_input()
 }
 
 // Project the 3D point to 2D using orthographic projection
-vect2_t orthographic_project(vect3_t point)
+vec2_t orthographic_project(vec3_t point)
 {
-	vect2_t projected_point = {
+	vec2_t projected_point = {
 		(fov_factor_orthographic * point.x),
 		(fov_factor_orthographic * point.y)
 	};
@@ -74,9 +76,9 @@ vect2_t orthographic_project(vect3_t point)
 }
 
 // Project the 3D point to 2D using perspective projection
-vect2_t perspective_project(vect3_t point)
+vec2_t perspective_project(vec3_t point)
 {
-	vect2_t projected_point = {
+	vec2_t projected_point = {
 		(fov_factor_perspective * point.x) / point.z,
 		(fov_factor_perspective * point.y) / point.z
 	};
@@ -86,19 +88,30 @@ vect2_t perspective_project(vect3_t point)
 
 void update()
 {
+	// Rotate about the x axis by 0.01 each frame
+	cube_rotation.x += 0.01;
+	// Rotate about the y axis by 0.01 each frame
+	cube_rotation.y += 0.01;
+	// Rotate about the z axis by 0.01 each frame
+	cube_rotation.z += 0.01;
+
 	for (int i = 0; i < n_points; i++)
 	{
-		vect3_t point = cube_points[i];
+		vec3_t point = cube_points[i];
+
+		vec3_t transformed_point = vec3_rotate_x(point, cube_rotation.x);
+		transformed_point = vec3_rotate_y(transformed_point, cube_rotation.y);
+		transformed_point = vec3_rotate_z(transformed_point, cube_rotation.z);
 
 		// Move points away from camera
-		point.z -= camera_position.z;
+		transformed_point.z -= camera_position.z;
 
 		//---------- Project point ----------
 		// Orthographic
 		// vect2_t projected_point = orthographic_project(point);
 		//
 		// Perspective
-		vect2_t projected_point = perspective_project(point);
+		vec2_t projected_point = perspective_project(transformed_point);
 		//------------------------------------
 
 		projected_points[i] = projected_point;
@@ -116,7 +129,7 @@ void render()
 
 	for (int i = 0; i < n_points; i++)
 	{
-		vect2_t projected_point = projected_points[i];
+		vec2_t projected_point = projected_points[i];
 		display.draw_rect(projected_point.x + window_width / 2, projected_point.y + window_height / 2, 4, 4, 0xFFFFFFFF);
 	}
 
